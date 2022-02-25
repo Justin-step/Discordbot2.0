@@ -131,6 +131,6 @@ client.on("messageCreate", async message => {
 
 });
 
-client.login(Botconfig.token);
+client.login(botConfig.token);
 
 
