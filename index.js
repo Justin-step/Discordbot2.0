@@ -26,8 +26,6 @@ client.once("ready", () => {
     client.user.setActivity("OnzDorp RP", { type: "PLAYING" });
 
     const statusOptions = [
-        "Support",
-        "Staff",
         "OnzDorp-RP"
     ]
 
@@ -131,6 +129,8 @@ client.on("messageCreate", async message => {
         await message.reply("Er was een probleem tijdens het uitvoeren van deze command")
     }
 
-})
+});
+
+client.login(process.env.token);
 
 
