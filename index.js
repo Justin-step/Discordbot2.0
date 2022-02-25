@@ -129,8 +129,8 @@ client.on("messageCreate", async message => {
         await message.reply("Er was een probleem tijdens het uitvoeren van deze command")
     }
 
-});
+})
 
-client.login(botConfig);
+
 
 
