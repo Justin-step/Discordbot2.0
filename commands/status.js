@@ -20,5 +20,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "status",
     category: "general",
-    description: "De bot zegt hallo terug"
+    description: "."
 }

@@ -20,5 +20,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "knoppolitie",
     category: "general",
-    description: "De bot zegt hallo terug"
+    description: "Kunt u niet gebruiken"
 }
