@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
     .setTitle("OnzDorp")
-    .setDescription("Wie zijn een leuke Roleplay server u kunt hier veel doen tip: kijk in-game")
+    .setDescription("Wij zijn een leuke Roleplay server u kunt hier veel doen tip: kijk in-game")
     .setColor("#ff0000")
     .addFields(
         {name:"Bot naam", value:client.user.username},
