@@ -69,7 +69,7 @@ module.exports.run = async (client, message, args) => {
 
             let embedParent = new discord.MessageEmbed()
                 .setAuthor(message.author.username, message.author.displayAvatarURL({ size: 4096 }))
-                .setTitle('Nieuw ticket')
+                .setTitle('Nieuwe Ticket')
                 .addFields(
                     { name: "Reden", value: reason, inline: true },
                     { name: "Aangemaakt op", value: today, inline: true }
@@ -81,7 +81,7 @@ module.exports.run = async (client, message, args) => {
 
         }).catch(err => {
             message.channel.send('Er is iets fout gegaan');
-        })
+        });
 
     }).catch(err => {
         message.channel.send('Er is iets fout gegaan');
