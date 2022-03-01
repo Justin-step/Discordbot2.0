@@ -2,9 +2,12 @@ const { Client, Intents, Collection, Interaction } = require("discord.js");
 const botConfig = require("./botConfig.json");
 const fs = require("fs");
 
+const tempMute = JSON.parse(fs.readFileSync("./tempMutes.json", "utf8"));
+
 const client = new Client({ 
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] 
+    Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_PRESENCES] 
 });
 
 client.commands = new Collection();
@@ -53,6 +56,54 @@ client.once("ready", () => {
         setTimeout(updateStatus, time);
     } 
     updateStatus();
+
+    const checkTempMute = async () => {
+ 
+        // Omdat we over object propertys gaan moeten we dit anders doen dan een array.
+        // We gaan hier over iedere key in het object gaan in het tempMutes.json bestand.
+        for (const result of Object.keys(tempMute)) {
+            // We halen het ID er uit.
+            const idMember = result;
+            // We halen de tijd op vanuit het hele bestand bij die key (ID) en dan de tijd.
+            const time = tempMute[result].time;
+     
+            // Tijd van nu ophalen.
+            let date = new Date();
+            let dateMilli = date.getTime();
+            // Tijd bij gebruiker omvormen naar leesbare tijd.
+            let dateReset = new Date(time);
+     
+            // Als de tijd van het muten kleiner is als de tijd van nu en de tijd staat niet op 0
+            // dan mag deze persoon verlost worden van het zwijgen.
+            if (dateReset < dateMilli && time != 0) {
+     
+                try {
+                    // We halen de server op.
+                    let guild = await client.guilds.fetch("ID");
+                    // We gaan de persoon gegevens ophalen aan de hand van de idMember waar we de tekens < @ ! > weghalen.
+                    const mutePerson = guild.members.cache.find(member => member.id === idMember.replace(/[<@!>]/g, ''));
+                    // We halen de rol op.
+                    let muteRole = guild.roles.cache.get('ID');
+                    // We kijken na als de rol bestaat.
+                    if (!muteRole) return console.log("De rol muted bestaat niet.");
+                    // We verwijderen de rol van de persoon.
+                    await (mutePerson.roles.remove(muteRole.id));
+                    // We zetten de tijd op 0.
+                    tempMute[mutePerson].time = 0;
+                    // We slaan dit mee op in het document.
+                    fs.writeFile("./tempMutes.json", JSON.stringify(tempMute), (err) => {
+                        if (err) console.log(err);
+                    });
+                }
+                catch (err) {
+                    console.log(err + " Persoon kon niet geunmute worden wegens deze persoon niet meer op de server is");
+                }
+            }
+        }
+        setTimeout(checkTempMute, 1000 * 60); // We zetten een timeout van 1 minuut.
+    }
+    checkTempMute(); // We starten de functie met de timeout.
+
 });
 
 client.on("interactionCreate", Interaction => {
@@ -88,7 +139,7 @@ client.on("interactionCreate", Interaction => {
 
 })
 
-client.on("guildMemberAdd", member => {
+client.on("guildMemberAdd", async (member) => {
 
     var role = member.guild.roles.cache.get("943620036118077511")
 
