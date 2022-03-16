@@ -27,9 +27,9 @@ client.once("ready", () => {
     client.user.setActivity("OnzDorp RP", { type: "PLAYING" });
 
     const statusOptions = [
-        "OnzDorp-RP",
-        "OnzDorp TestServer",
-        "OnzDorp-RP Discord"
+        "Nijmegen",
+        "TestServer",
+        "Nijmegen Discord"
     ]
 
     let counter = 0;
