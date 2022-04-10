@@ -24,12 +24,12 @@ for(const file of commandFiles) {
 
 client.once("ready", () => {
     console.log(`${client.user.username} is online.`);
-    client.user.setActivity("OnzDorp RP", { type: "PLAYING" });
+    client.user.setActivity("AltijdChe", { type: "LOOK" });
 
     const statusOptions = [
-        "Nijmegen",
-        "TestServer",
-        "Nijmegen Discord"
+        "AltijdChe Community",
+        "Twitch AltijdChe",
+        "Youtube AltijdChe"
     ]
 
     let counter = 0;
@@ -102,7 +102,7 @@ client.on("guildMemberAdd", async (member) => {
 
     if (!channel) return;
 
-    channel.send(`Welkom **${member}**, op OnzDorp-RP`);
+    channel.send(`Welkom **${member}**, In de discord van AltijdChe`);
    
 })
 
