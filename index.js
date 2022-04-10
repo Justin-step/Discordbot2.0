@@ -24,7 +24,7 @@ for(const file of commandFiles) {
 
 client.once("ready", () => {
     console.log(`${client.user.username} is online.`);
-    client.user.setActivity("AltijdChe", { type: "LOOK" });
+    client.user.setActivity("AltijdChe", { type: "WATCHING" });
 
     const statusOptions = [
         "AltijdChe Community",
