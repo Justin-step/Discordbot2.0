@@ -7,10 +7,10 @@ module.exports.run = async (client, message, args) => {
     .setDescription("Ik ben altijdche en stream vaak op twitch wat ik stream: Rust, Fivem, Phasmophobia en nog veel meer!")
     .setColor("#ff0000")
     .addField("Bot naam", client.user.username)
-    .setThumbnail('foto')
-    .setImage('foto')
+    .setThumbnail('https://cdn.discordapp.com/attachments/689802923156439060/962754507073257483/Ninja.png')
+    .setImage('https://cdn.discordapp.com/attachments/689802923156439060/962754507073257483/Ninja.png')
     .setTimestamp()
-    .setFooter("AltijdChe", 'Foto');
+    .setFooter("AltijdChe", 'https://cdn.discordapp.com/attachments/689802923156439060/962754507073257483/Ninja.png');
 
     return message.channel.send({ embeds: [botEmbed] });
 
