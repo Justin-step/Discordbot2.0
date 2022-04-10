@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
 
    const messageReview = args.splice(1,args.length).join("") || '**Geen bericht meegegeven**';
 
-   const reviewChannel = message.member.guild.channels.cache.get("892814437302538254");
+   const reviewChannel = message.member.guild.channels.cache.get("938161235826978906");
 
    if (!reviewChannel) return message.reply("Kanaal niet gevonden");
 
