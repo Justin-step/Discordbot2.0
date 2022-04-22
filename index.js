@@ -92,7 +92,7 @@ client.on("interactionCreate", Interaction => {
 
 client.on("guildMemberAdd", async (member) => {
 
-    var role = member.guild.roles.cache.get("943620036118077511")
+    var role = member.guild.roles.cache.get("938161235227209823")
 
     if(!role) return;
 
